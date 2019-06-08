@@ -1,5 +1,7 @@
 ### Issue
 
+https://github.com/bazelbuild/rules_nodejs/issues/834
+
 Bazel rules_nodejs 0.31.1 issue with nodejs_binary entry_point defined as label.
 
 ### Description
