@@ -1,0 +1,33 @@
+package(default_visibility = ["//visibility:public"])
+
+# TS compile
+load("@npm_bazel_typescript//:index.bzl", "ts_library")
+
+# bazel build //src:app
+ts_library(
+    name = "app",
+    srcs = glob(
+        include = ["**/*.ts"],
+        exclude = ["**/*spec.ts"],
+    ),
+    module_name = "entry_point_label",
+    deps = [
+        "@npm//@types",
+    ],
+)
+
+
+load("@build_bazel_rules_nodejs//:defs.bzl", "nodejs_binary")
+
+# bazel run //src:server
+nodejs_binary(
+    name = "server",
+    node_modules = "@npm//:node_modules",
+    # entry_point defined as label:
+    # https://github.com/bazelbuild/rules_nodejs/releases/tag/0.31.1
+    entry_point = ":main.ts",
+    data = [
+        ":app",
+    ],
+    templated_args = ["--node_options=--expose-gc"],
+)
