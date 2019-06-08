@@ -35,10 +35,11 @@ Error: No file entry_point_label/src/main.js found in module root entry_point_la
 
 ### How to reproduce
 
-    git clone git@github.com:siberex/bazel_issue_rules_nodejs_entry_point.git /tmp/entry_point_label
-    cd /tmp/entry_point_label
-    bazel run //src:server
-
+```bash
+git clone git@github.com:siberex/bazel_issue_rules_nodejs_entry_point.git /tmp/entry_point_label
+cd /tmp/entry_point_label
+bazel run //src:server
+```
 
 ### Workaround
 
