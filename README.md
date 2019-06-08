@@ -1,7 +1,10 @@
+### Issue
 
 Bazel rules_nodejs 0.31.1 issue with nodejs_binary entry_point defined as label.
 
-After switching from
+### Description
+
+After switching from (0.30.2)
 
 ```
 entry_point = "workspace_name/src/main.js",
@@ -30,5 +33,16 @@ Error: No file entry_point_label/src/main.js found in module root entry_point_la
     at startup (internal/bootstrap/node.js:285:19)
 ```
 
-Workaround: add `src/src/main.ts`
+### How to reproduce
+
+    bazel run //src:server
+
+
+### Workaround
+
+Add `src/src/main.ts`:
+
+```
+import '../main';
+```
 
